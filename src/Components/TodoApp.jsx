@@ -3,26 +3,37 @@ import React, { useState } from "react";
 function TodoApp() {
   const [task, setTask] = useState("");
   const [tasks, setTasks] = useState([]);
+  const [editIndex, setEditIndex] = useState(null); // 👈 for tracking which task to edit
 
-  // Add Task function
+  // Add or Update Task function
   const handleAddTask = () => {
     if (task.trim() === "") return;
-    setTasks([...tasks, task]);
-    setTask("");
+
+    if (editIndex !== null) {
+      // Update existing task
+      const updatedTasks = [...tasks];
+      updatedTasks[editIndex] = task;
+      setTasks(updatedTasks);
+      setEditIndex(null); // reset edit mode
+      setTask("");
+    } else {
+      // Add new task
+      setTasks([...tasks, task]);
+      setTask("");
+    }
   };
 
   // Delete Task function
-
-// ye indextodelete ka name hum apni mrzi sy rakh skty hain 
- 
-  const handleDeleteTask = (indexToDelete) => {  
- 
+  const handleDeleteTask = (indexToDelete) => {
     const updatedTasks = tasks.filter((_, index) => index !== indexToDelete);
     setTasks(updatedTasks);
   };
-//   const numbers = [10, 20, 30];
-// const result = numbers.filter((_, i) => i !== 1);
-// console.log(result); // [10, 30]
+
+  // Edit Task function
+  const handleEditTask = (index) => {
+    setTask(tasks[index]); // put task in input box
+    setEditIndex(index); // set current editing index
+  };
 
   return (
     <div className="todo-container">
@@ -37,7 +48,7 @@ function TodoApp() {
           onChange={(e) => setTask(e.target.value)}
         />
         <button className="add-btn" onClick={handleAddTask}>
-          Add Task
+          {editIndex !== null ? "Update Task" : "Add Task"}
         </button>
       </div>
 
@@ -51,8 +62,9 @@ function TodoApp() {
           <li key={index} className="todo-item">
             <span className="task-text">{t}</span>
             <div className="task-buttons">
-              <button className="edit-btn">Edit</button>
-              {/* Delete button with onClick */}
+              <button className="edit-btn" onClick={() => handleEditTask(index)}>
+                Edit
+              </button>
               <button
                 className="delete-btn"
                 onClick={() => handleDeleteTask(index)}
