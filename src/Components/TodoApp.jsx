@@ -2,55 +2,27 @@ import React, { useState } from "react";
 
 function TodoApp() {
   const [task, setTask] = useState("");
-  const [tasks, setTasks] = useState([]); 
-  const [editIndex, setEditIndex] = useState(null);
+  const [tasks, setTasks] = useState([]);
 
-  // Add Task
+  // Add Task function
   const handleAddTask = () => {
     if (task.trim() === "") return;
-    setTasks([...tasks, { text: task, completed: false }]);
+    setTasks([...tasks, task]);
     setTask("");
   };
 
-  // Edit Task
-  const handleEditTask = (index) => {
-    setTask(tasks[index].text);
-    setEditIndex(index);
-  };
+  // Delete Task function
 
-  // Update Task
-  const handleUpdateTask = () => {
-    if (task.trim() === "") return;
-    const updatedTasks = [...tasks];
-    updatedTasks[editIndex].text = task;
-    setTasks(updatedTasks);
-    setEditIndex(null);
-    setTask("");
-  };
-
-  // Delete Single Task
-  const handleDeleteTask = (indexToDelete) => {
+// ye indextodelete ka name hum apni mrzi sy rakh skty hain 
+ 
+  const handleDeleteTask = (indexToDelete) => {  
+ 
     const updatedTasks = tasks.filter((_, index) => index !== indexToDelete);
     setTasks(updatedTasks);
   };
-
-  // Delete All Tasks
-  const handleDeleteAll = () => {
-    setTasks([]);
-  };
-
-  //  Complete Single Task
-  const handleCompleteTask = (indexToComplete) => {
-    const updatedTasks = [...tasks];
-    updatedTasks[indexToComplete].completed = true;
-    setTasks(updatedTasks);
-  };
-
-  //  Complete All Tasks (change color for all)
-  const handleCompleteAll = () => {
-    const updatedTasks = tasks.map((t) => ({ ...t, completed: true }));
-    setTasks(updatedTasks);
-  };
+//   const numbers = [10, 20, 30];
+// const result = numbers.filter((_, i) => i !== 1);
+// console.log(result); // [10, 30]
 
   return (
     <div className="todo-container">
@@ -77,16 +49,9 @@ function TodoApp() {
           value={task}
           onChange={(e) => setTask(e.target.value)}
         />
-
-        {editIndex !== null ? (
-          <button className="add-btn" onClick={handleUpdateTask}>
-            Update Task
-          </button>
-        ) : (
-          <button className="add-btn" onClick={handleAddTask}>
-            Add Task
-          </button>
-        )}
+        <button className="add-btn" onClick={handleAddTask}>
+          Add Task
+        </button>
       </div>
 
       {/* Task List */}
@@ -98,22 +63,8 @@ function TodoApp() {
           >
             <span className="task-text">{t.text}</span>
             <div className="task-buttons">
-              {/*  Complete Button */}
-              {!t.completed && (
-                <button
-                  className="complete-btn"
-                  onClick={() => handleCompleteTask(index)}
-                >
-                  Complete
-                </button>
-              )}
-
-              <button
-                className="edit-btn"
-                onClick={() => handleEditTask(index)}
-              >
-                Edit
-              </button>
+              <button className="edit-btn">Edit</button>
+              {/* Delete button with onClick */}
               <button
                 className="delete-btn"
                 onClick={() => handleDeleteTask(index)}
