@@ -1,148 +1,92 @@
-
 .todo-container {
-  max-width: 500px;
-  margin: 60px auto;
-  padding: 30px;
-  background: #3da3b1;
-  border-radius: 16px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  font-family: "Poppins", sans-serif;
+  max-width: 450px;
+  margin: 50px auto;
+  background: #edc5c5;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .todo-title {
   text-align: center;
-  color: #333;
   margin-bottom: 20px;
-  font-size: 1.8rem;
+  color: #333;
 }
 
-/* Input section */
 .todo-input-section {
   display: flex;
   gap: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
 .todo-input {
   flex: 1;
-  padding: 10px 14px;
-  border: 1px solid #ddd;
+  padding: 10px;
   border-radius: 8px;
-  font-size: 1rem;
-  transition: all 0.3s ease;
+  border: 1px solid #ccc;
 }
 
-.todo-input:focus {
-  border-color: #007bff;
-  outline: none;
-}
-
-.add-btn {
+.add-btn,
+.edit-btn,
+.delete-btn,
+.complete-btn,
+.delete-all-btn,
+.complete-all-btn {
   background-color: #007bff;
   color: white;
   border: none;
-  padding: 10px 16px;
+  padding: 8px 12px;
   border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s;
+  gap: 5px;
 }
 
-.add-btn:hover {
-  background-color: #0056b3;
+.edit-btn {
+  background-color: #ffc107;
 }
 
-/* Action buttons */
-.todo-actions {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
+.delete-btn {
+  background-color: #dc3545;
 }
 
-.complete-all-btn,
-.delete-all-btn {
-  border: none;
-  padding: 8px 14px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 500;
-  transition: 0.3s;
-}
-
-.complete-all-btn {
+.complete-btn {
   background-color: #28a745;
-  color: #fff;
-}
-
-.complete-all-btn:hover {
-  background-color: #218838;
 }
 
 .delete-all-btn {
   background-color: #dc3545;
-  color: #fff;
 }
 
-.delete-all-btn:hover {
-  background-color: #c82333;
+.complete-all-btn {
+  background-color: #28a745;
 }
 
-/* Todo List */
+button:hover {
+  opacity: 0.8;
+}
+
 .todo-list {
-  list-style: none;
+  list-style-type: none;
   padding: 0;
-  margin: 0;
 }
 
 .todo-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #f8f9fa;
-  border-radius: 10px;
-  padding: 10px 14px;
-  margin-bottom: 10px;
-  transition: background-color 0.3s ease;
+  background: #ffffff;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 8px;
 }
 
-.todo-item:hover {
-  background: #e9ecef;
+/* ✅ Completed task color (no line) */
+.completed-item {
+  background-color: #d4edda; /* light green */
 }
 
-.todo-item.completed .task-text {
-  text-decoration: line-through;
-  color: #888;
-}
-
-/* Buttons for each task */
 .task-buttons {
   display: flex;
-  gap: 8px;
-}
-
-.edit-btn,
-.delete-btn {
-  border: none;
-  padding: 6px 10px;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  font-size: 0.9rem;
-}
-
-.edit-btn {
-  background-color: #ffc107;
-  color: #333;
-}
-
-.edit-btn:hover {
-  background-color: #e0a800;
-}
-
-.delete-btn {
-  background-color: #dc3545;
-  color: #fff;
-}
-
-.delete-btn:hover {
-  background-color: #b02a37;
+  gap: 5px;
 }
